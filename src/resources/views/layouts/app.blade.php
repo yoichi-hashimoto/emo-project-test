@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>@yield('title', '町田emoプロジェクト')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    {{-- Vite は今回は使わないのでコメントアウトしてOK --}}
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    <link rel="stylesheet" href="{{ asset('css/emo.css') }}">
+</head>
+<body>
+<header class="header">
+    <div class="container header__inner">
+        <div class="header__logo">
+            <span class="header__logo-mark">emo</span>
+            <span class="header__logo-text">町田 emo プロジェクト</span>
+        </div>
+        <nav class="nav">
+            <a href="{{ route('home') }}">ホーム</a>
+            <a href="{{ route('activities.index') }}">活動報告</a>
+            <a href="{{ route('members.index') }}">メンバー</a>
+            <a href="{{ route('apply.index') }}">活動申し込み</a>
+            <a href="{{ route('contact.index') }}">お問い合わせ</a>
+
+            @auth
+                @if(auth()->user()->isMember())
+                    <a href="{{ route('events.create') }}">イベント作成</a>
+                    {{-- ここを変更 --}}
+                    <a href="{{ route('activities.create') }}">報告作成</a>
+                @endif
+
+                <a href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    ログアウト
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+                    @csrf
+                </form>
+            @else
+                <a href="{{ route('login') }}">ログイン</a>
+            @endauth
+
+        </nav>
+    </div>
+</header>
+
+
+<main>
+    @yield('content')
+</main>
+
+<footer class="footer">
+    <div class="container footer__inner">
+        <p class="footer__copy">© {{ date('Y') }} Machida emo Project</p>
+    </div>
+</footer>
+</body>
+</html>
