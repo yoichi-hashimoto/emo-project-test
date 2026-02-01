@@ -4,10 +4,10 @@
 
 @section('content')
 <section class="section">
-    <div class="container section__inner section__narrow">
+    <div class="container section__inner">
         <h1 class="section__title">活動申し込み</h1>
         <p class="section__lead">
-            参加してみたい方は、下記のイベント一覧から参加したいイベントを選び、
+            参加してみたい方は、下記のイベント一覧から「申し込む」ボタンをクリックし、各イベントの申し込み
             フォームよりお申し込みください。
         </p>
 
@@ -35,38 +35,59 @@
         @if($events->isEmpty())
             <p>現在、開催予定のイベントはありません。</p>
         @else
-            <div class="events-grid" style="margin-bottom:32px;">
-                @foreach($events as $event)
-                    <article class="card card--link">
-                        <div class="event-card__thumb">
-                            <img src="{{ $event->category_image }}"
-                                 alt="{{ $event->type ?? 'event' }}">
-                        </div>
-                        <h3 class="card__title">{{ $event->title }}</h3>
-                        <p class="card__meta">
-                            {{ $event->scheduled_at->format('Y-m-d H:i') }}
-                            ／ {{ $event->place }}
-                        </p>
-                        <p class="card__meta">
-                            定員：{{ $event->capacity ?? '未設定' }}名
-                            ／ 申込：{{ $event->applications()->count() }}名
-                        </p>
-                        <div class="card__actions">
-                            <a href="{{ route('events.show',$event) }}"
-                               class="btn btn--ghost">
-                                詳細
-                            </a>
-                            <a href="{{ route('apply.index',['event_id'=>$event->id]) }}"
-                               class="btn btn--primary">
-                                申し込む
-                            </a>
-                        </div>
-                    </article>
-                @endforeach
+ <div class="events-grid" style="margin-bottom:32px;">
+    @foreach($events as $event)
+        <article class="card card--link">
+            <div class="event-card__thumb">
+                <img src="{{ $event->category_image }}"
+                     alt="{{ $event->type ?? 'event' }}">
             </div>
+            <h2 class="card__category">{{ $event->type }}</h2>
+            <h3 class="card__title">{{ $event->title }}</h3>
+            <p class="card__meta">
+                {{ $event->scheduled_at->format('Y年m月d日') }}<br>
+                {{ $event->scheduled_at->format('H:i') }}<br>
+                {{ $event->place }}
+            </p>
+            <p class="card__meta">
+                定員：{{ $event->capacity ?? '未設定' }}名
+                <!-- ／ 申込：{{ $event->applications()->count() }}名 -->
+            </p>
+
+            <div class="card__actions">
+                <a href="{{ route('events.show',$event) }}"
+                   class="btn btn--ghost">
+                    詳細
+                </a>
+
+                <a href="{{ $event->application_path }}"
+                   class="btn btn--primary">
+                    申し込む
+                </a>
+                {{-- ▼追加：作成者(member)のみ削除ボタン表示 --}}
+                @auth
+                    @php $myMemberId = auth()->user()->member?->id; @endphp
+
+                    @if($myMemberId && (int)$event->member_id === (int)$myMemberId)
+                        <form action="{{ route('events.destroy', $event) }}"
+                              method="POST"
+                              style="display:inline-block;"
+                              onsubmit="return confirm('本当に削除しますか？この操作は元に戻せません。');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn--danger">削除</button>
+                        </form>
+                    @endif
+                @endauth
+                {{-- ▲追加ここまで --}}
+            </div>
+        </article>
+    @endforeach
+</div>
+
         @endif
 
-        {{-- 申し込みフォーム --}}
+        <!-- {{-- 申し込みフォーム --}}
 <div class="entry__form">
         <h2 class="section__subtitle">申し込みフォーム</h2>
 
@@ -136,5 +157,5 @@
         </form>
     </div>
 </div>
-</section>
+</section> -->
 @endsection

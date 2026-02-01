@@ -50,9 +50,15 @@
             </div>
 
             <div class="form__group" style="margin-top:8px;">
-                <button type="submit" class="btn btn--primary" style="width:100%;">
+                <div class="card__actions">
+                <button type="submit" class="btn btn--primary" style="width:70%; margin-right:10px;">
                     ログイン
                 </button>
+
+                <a class="btn btn--ghost" href="{{ route('register') }}">
+                    新規登録    
+                </a>
+                </div>
             </div>
         </form>
     </div>

@@ -3,14 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEventRequest;
+use Illuminate\Http\Request;
 use App\Models\Event;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
-    // イベント一覧（一般公開）
-    public function index() 
+    public function index()
     {
-        $events = Event::orderBy('scheduled_at', 'asc')->get();
+        $events = Event::query()
+            ->whereNotNull('scheduled_at')
+            ->whereDate('scheduled_at', '>=', now()->toDateString()) // ★ここが重要
+            ->orderBy('scheduled_at', 'asc')
+            ->get();
+
+            dd(
+    now()->toDateString(),
+    Event::query()
+        ->select('id','title','scheduled_at')
+        ->orderBy('scheduled_at','asc')
+        ->get()
+        ->toArray()
+);
 
         return view('events.index', compact('events'));
     }
@@ -27,25 +41,41 @@ class EventController extends Controller
 
     public function store(StoreEventRequest $request)
     {
-    Event::create([
-        'title'        => $request->title,
-        'type'         => $request->type,        // ← ここも type
-        'description'  => $request->description,
-        'scheduled_at' => $request->scheduled_at,
-        'place'        => $request->place,
-        'capacity'     => $request->capacity,
-    ]);
+        $memberId = auth()->user()->member?->id;
+        abort_unless($memberId, 403); // member以外の作成を弾く（念のため）
 
-    return redirect()->route('apply.index')
-        ->with('success', 'イベントを登録しました。');
+        Event::create([
+            'title'        => $request->title,
+            'type'         => $request->type,
+            'description'  => $request->description,
+            'scheduled_at' => $request->scheduled_at,
+            'place'        => $request->place,
+            'capacity'     => $request->capacity,
+            'application_path' => $request->application_path,
+            'member_id'    => $memberId,
+        ]);
+
+        return redirect()->route('apply.index')
+            ->with('success', 'イベントを登録しました。');
     }
 
-    // 追加：イベント詳細
+    // イベント詳細
     public function show(Event $event)
     {
-        // 申し込み人数（applications リレーションがある前提）
         $applicationsCount = $event->applications()->count();
 
         return view('events.show', compact('event', 'applicationsCount'));
     }
+
+    public function destroy(Request $request, Event $event)
+    {
+    $memberId = $request->user()->member?->id;
+
+    abort_unless($memberId && $event->member_id === $memberId, 403);
+
+    $event->delete();
+
+    return redirect()->route('apply.index')->with('success', 'イベントを削除しました。');
+}
+
 }

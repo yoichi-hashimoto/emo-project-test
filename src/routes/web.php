@@ -21,9 +21,6 @@ Route::post('/contact',[ContactController::class,'store'])->name('contact.store'
 
 // ───── イベント ─────
 
-// 一覧（一般公開）
-Route::get('/events', [EventController::class, 'index'])->name('events.index');
-
 // 作成（メンバー専用）
 Route::middleware(['auth', 'member'])->group(function () {
     Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
@@ -48,6 +45,8 @@ Route::middleware(['auth', 'member'])->group(function () {
 
     Route::post('/activities', [ActivityController::class, 'store'])
         ->name('activities.store');
+    
+    Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 });
 
 // 詳細（これも一番最後）
@@ -56,7 +55,7 @@ Route::get('/activities/{activity}', [ActivityController::class, 'show'])
 
 
 // いいね・コメント（ログイン必須）
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
     Route::post('/activities/{activity}/like', [ActivityController::class, 'like'])
         ->name('activities.like');
 
@@ -70,6 +69,6 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth','verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';

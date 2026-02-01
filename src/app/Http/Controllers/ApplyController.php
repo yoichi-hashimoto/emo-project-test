@@ -11,8 +11,17 @@ class ApplyController extends Controller
 {
     public function index(Request $request)
     {
-        $events = Event::orderBy('scheduled_at','asc')->get();
+        $events = Event::query()
+            ->whereNotNull('scheduled_at')
+            ->whereDate('scheduled_at', '>=', now()->toDateString()) // ★ここが重要
+            ->orderBy('scheduled_at', 'asc')
+            ->get();
 
+        Event::query()
+        ->select('id','title','scheduled_at')
+        ->orderBy('scheduled_at','asc')
+        ->get()
+        ->toArray();
         // /apply?event=◯◯ で渡ってくる ID
         $selectedEventId = $request->query('event_id');
 

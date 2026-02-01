@@ -16,6 +16,8 @@ class Event extends Model
         'scheduled_at',
         'place',
         'capacity',
+        'application_path', // 追加部分
+        'member_id',
     ];
 
     protected $casts = [
@@ -37,15 +39,15 @@ class Event extends Model
         $type = trim(mb_strtolower((string) $this->type));
 
         if (in_array($type, ['plogging', 'プロギング'], true)) {
-            return asset('images/events/plogging.png');
+            return asset('images/proging.png');
         }
 
         if (in_array($type, ['farm', '農業体験'], true)) {
-            return asset('images/events/farm.png');
+            return asset('images/farm-exhibition.png');
         }
 
         if (in_array($type, ['nature', '自然観察会'], true)) {
-            return asset('images/events/nature.png');
+            return asset('images/nature-trail.png');
         }
 
         if (in_array($type, ['other', 'その他'], true)) {

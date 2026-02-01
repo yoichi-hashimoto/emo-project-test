@@ -39,12 +39,12 @@
                         @endif
                         <button type="submit" class="btn btn--ghost">
                             👍 {{ $activity->likes->count() }}
-                            {{ $userLike ? 'いいね解除' : 'いいね' }}
+                            {{ $userLike ? 'グッジョブ解除' : 'グッジョブ' }}
                         </button>
                     </form>
                 @else
-                    <span>👍 {{ $activity->likes->count() }} いいね</span>
-                    <span style="margin-left:8px;">※いいねするにはログインが必要です</span>
+                    <span>👍 {{ $activity->likes->count() }} グッジョブ！</span>
+                    <span style="margin-left:8px;">※グッジョブするにはログインが必要です</span>
                 @endauth
             </div>
         </article>

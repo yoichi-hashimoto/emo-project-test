@@ -18,7 +18,7 @@ class StoreEventReportRequest extends FormRequest
             'event_id'       => ['nullable', 'exists:events,id'],
             'title'          => ['required', 'string', 'max:120'],
             'body'           => ['nullable', 'string'],
-            'thumbnail'      => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'thumbnail'      => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:10240'],
             'video_url'      => ['nullable', 'url'],
             'published_at'   => ['nullable', 'date'],
         ];
@@ -31,6 +31,7 @@ class StoreEventReportRequest extends FormRequest
             'thumbnail.image'   => 'サムネイルは画像ファイルを選択してください',
             'video_url.url'     => '動画URLの形式が正しくありません',
             'published_at.date' => '公開日は日付形式で入力してください',
+            'thumbnail.max'     => 'サムネイルは10MB以内でアップロードしてください',
         ];
     }
 }

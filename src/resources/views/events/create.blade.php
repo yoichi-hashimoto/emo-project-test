@@ -30,10 +30,10 @@
                 <label for="type">種別<span class="badge badge--required">必須</span></label>
                 <select id="type" name="type" required>
                     <option value="">選択してください</option>
-                    <option value="plogging" @selected(old('type')==='plogging')>プロギング</option>
-                    <option value="nature"   @selected(old('type')==='nature')>自然観察会</option>
-                    <option value="farm"     @selected(old('type')==='farm')>農業体験</option>
-                    <option value="other"    @selected(old('type')==='other')>その他</option>
+                    <option value="プロギング" @selected(old('type')==='プロギング')>プロギング</option>
+                    <option value="自然観察会"   @selected(old('type')==='自然観察会')>自然観察会</option>
+                    <option value="農業体験"     @selected(old('type')==='農業体験')>農業体験</option>
+                    <option value="その他"    @selected(old('type')==='その他')>その他</option>
                 </select>
             </div>
 
@@ -53,6 +53,13 @@
                 <input type="number" id="capacity" name="capacity" min="1" value="{{ old('capacity') }}">
             </div>
 
+            <div class="form__group">
+                <label for="application_path">申し込みフォームURL</label>
+                <input type="text" id="application_path" name="application_path" value="{{ old('application_path') }}">
+            </div>
+
+            <a href="https://docs.google.com/forms/u/0/" style="display:block; margin-bottom:8px; color:blue; ">※Googleフォームを作成する</a>
+            <br>
             <div class="form__group">
                 <label for="description">説明</label>
                 <textarea id="description" name="description" rows="5">{{ old('description') }}</textarea>

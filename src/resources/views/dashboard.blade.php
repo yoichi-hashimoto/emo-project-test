@@ -1,17 +1,19 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
-                </div>
+@section('title', 'ダッシュボード')
+
+@section('content')
+<div class="section">
+    <div class="container section__inner">
+        <div class="card">
+            <h1 class="section__title">ダッシュボード</h1>
+            <p class="section__lead">ログインしました。</p>
+
+            <div class="card__actions">
+                <a class="btn btn--primary" href="{{ route('home') }}">ホームへ</a>
+                <a class="btn btn--ghost" href="{{ route('apply.index') }}">活動申し込みへ</a>
             </div>
         </div>
     </div>
-</x-app-layout>
+</div>
+@endsection

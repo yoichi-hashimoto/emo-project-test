@@ -182,7 +182,7 @@ a {
 }
 
 .card__title {
-    margin: 0 0 8px;
+    margin: 8px 0;
     font-size: 18px;
 }
 
@@ -208,8 +208,8 @@ a {
 }
 
 .card__meta {
-    margin-top: 4px;
-    font-size: 12px;
+    margin-top: 20px;
+    font-size: 20px;
     color: #7b8b80;
 }
 
@@ -223,6 +223,31 @@ a {
     transform: translateY(-4px);
     border-color: #6bbf8b;
     box-shadow: 0 8px 18px rgba(0, 0, 0, .15);
+}
+
+.card__category{
+    font-size:16px;
+    background-color: #5aa677;
+    width:fit-content;
+    color: white;
+    padding: 0px 10px;
+}
+
+.card__image{
+    border-radius: 12px;
+    width:100%;
+    height:180px;
+    object-fit: cover;
+}
+
+.sub__sentence{
+    text-align: center;
+    width: 100%;
+    margin-top:30px;
+    font-size:24px;
+    color:#4a5c4f;
+    grid-column: 1/3;
+    line-height: 2;
 }
 
 /* =========================
@@ -331,6 +356,8 @@ a {
     color: #607468;
 }
 
+
+
 /* =========================
    ヒーロー（トップのメインビジュアル）
    ========================= */
@@ -347,11 +374,11 @@ a {
 
 .hero__text h1 {
     font-size: clamp(24px, 3vw, 30px);
-    margin: 0 0 12px;
+    margin-bottom: 60px;
 }
 
 .hero__text p {
-    margin: 0 0 18px;
+    margin: 20px 0px;
     line-height: 1.8;
     color: #4a5c4f;
 }
@@ -396,11 +423,16 @@ a {
     overflow: hidden;
 }
 
+.event-card__group {
+    display: flex;
+}
+
 .event-card__thumb img {
     width: 100%;
-    height: 180px;
+    height: 300px;
     object-fit: cover;
     display: block;
+    border-radius: 15px;
 }
 
 /* イベントカードのリンク */
@@ -642,4 +674,67 @@ a {
     .events-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* =========================
+   メンバーカード
+   ========================= */
+.member-card__top {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.member-card__photo {
+    width: 172px;
+    height: 172px;
+    border-radius: 999px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid #e0f3e6;
+    background: #f3faf5;
+}
+
+.member-card__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.member-card__meta {
+    min-width: 150px;
+    text-align: center;
+}
+
+.member-card__bio {
+    margin-top: 6px;
+    width: 60%;
+}
+
+.section__narrow {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.alert {
+    border: 1px solid #d3e5d8;
+    background: #fff;
+    border-radius: 14px;
+    padding: 12px 14px;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.alert--success {
+    border-color: #bfe6cd;
+    background: #edf7f0;
+    color: #245033;
+}
+
+.alert--error {
+    border-color: #f2c2c2;
+    background: #fff3f3;
+    color: #8a1f2a;
 }

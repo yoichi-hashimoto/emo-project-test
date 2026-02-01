@@ -1,59 +1,81 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.app')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+@section('content')
+<div class="section">
+    <div class="container section__inner section__narrow">
+        <div class="card">
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+            <h1 class="section__title">ユーザー新規登録</h1>
+            <p class="section__lead">
+                入力したメールアドレス宛に確認メールが届きます。
+            </p>
 
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
+            @if ($errors->any())
+                <div class="alert alert--error" style="margin-bottom:16px;">
+                    <ul style="margin:0; padding-left:18px;">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-            </div>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
 
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
+                <div class="form__group">
+                    <label>お名前</label>
+                    <input
+                        type="text"
+                        name="name"
+                        value="{{ old('name') }}"
+                        required
+                        autofocus
+                    >
+                </div>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
+                <div class="form__group">
+                    <label>メールアドレス</label>
+                    <input
+                        type="email"
+                        name="email"
+                        value="{{ old('email') }}"
+                        required
+                    >
+                </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <div class="form__group">
+                    <label>パスワード</label>
+                    <input
+                        type="password"
+                        name="password"
+                        required
+                        autocomplete="new-password"
+                    >
+                </div>
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
+                <div class="form__group">
+                    <label>パスワード（確認）</label>
+                    <input
+                        type="password"
+                        name="password_confirmation"
+                        required
+                        autocomplete="new-password"
+                    >
+                </div>
 
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                <div class="card__actions">
+                    <button class="btn btn--primary" type="submit">
+                        登録してメール認証へ
+                    </button>
 
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
+                    <a class="btn btn--ghost" href="{{ route('login') }}">
+                        ログインへ
+                    </a>
+                </div>
+            </form>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </div>
+    </div>
+</div>
+@endsection

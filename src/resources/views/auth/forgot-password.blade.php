@@ -1,36 +1,41 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.app')
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+@section('content')
+<div class="section">
+  <div class="container section__inner section__narrow">
+    <div class="card">
+      <h1 class="section__title">パスワード再設定</h1>
+      <p class="section__lead">登録メールアドレス宛に、再設定リンクを送信します。</p>
+
+      @if (session('status'))
+        <div class="alert alert--success" style="margin-bottom:16px;">
+          {{ session('status') }}
+        </div>
+      @endif
+
+      @if ($errors->any())
+        <div class="alert alert--error" style="margin-bottom:16px;">
+          <ul style="margin:0; padding-left:18px;">
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
+
+      <form method="POST" action="{{ route('password.email') }}">
+        @csrf
+        <div class="form__group">
+          <label>メールアドレス</label>
+          <input type="email" name="email" value="{{ old('email') }}" required autofocus>
         </div>
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.email') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        <div class="card__actions">
+          <button class="btn btn--primary" type="submit">再設定リンクを送信</button>
+          <a class="btn btn--ghost" href="{{ route('login') }}">ログインへ</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+@endsection

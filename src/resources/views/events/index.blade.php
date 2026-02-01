@@ -35,7 +35,8 @@ use Illuminate\Support\Facades\Storage;
                         <h3 class="card__title">{{ $event->title }}</h3>
                         <p class="card__meta">
                             種別：{{ $event->type }} /
-                            日時：{{ optional($event->scheduled_at)->format('Y-m-d H:i') ?? '未定' }}<br>
+                            日時：{{ optional($event->scheduled_at)->format('Y月m日d曜日') ?? '未定' }}<br>
+                            {{ optional($event->scheduled_at)->format('H:i') ?? '未定' }}<br>
                             場所：{{ $event->place ?? '未定' }}
                         </p>
                         @if($event->description)

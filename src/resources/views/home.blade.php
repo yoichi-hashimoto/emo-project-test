@@ -7,14 +7,9 @@
     <div class="container hero__inner">
         <div class="hero__text">
             <h1>プロギング・自然観察・農業体験で<br>つながる “居場所” を。</h1>
-            <p>
-                生きづらさや特性を抱える若者たちが、安心してつながり、
-                楽しさを感じられる場をつくるプロジェクトです。
-            </p>
-            <div class="hero__buttons">
-                <a href="{{ route('apply.index') }}" class="btn btn--primary">活動に申し込む</a>
-                <a href="{{ route('activities.index') }}" class="btn btn--ghost">活動報告を見る</a>
-            </div>
+            <h2 class="section__title">町田emoプロジェクトとは</h2>
+            <p>町田emoプロジェクトは「感情と共感が価値を持つ『emo時代』を切りひらく」というビジョンを掲げて活動している団体です。</br>
+                プロギングや自然体験を通じて、感情が動き、共感が生まれ、「一人じゃない」と感じられる社会を目指しています。</br>「感情と共感が価値を持つ『emo時代』を切りひらく」というビジョンを掲げて活動している団体です。</p>
         </div>
         <!-- <div class="hero__image">
             <div class="hero__circle hero__circle--1"></div>
@@ -28,11 +23,25 @@
         </div> -->
     <div class="hero__image">
         <div class="hero__image slideshow">
-            <img src="{{ asset('images/hero1.png') }}" class="slide active">
-            <img src="{{ asset('images/hero2.png') }}" class="slide">
-            <img src="{{ asset('images/hero3.png') }}" class="slide">
+            <img src="{{ asset('images/ploging1.jpg') }}" class="slide active">
+            <img src="{{ asset('images/nature1.jpg') }}" class="slide">
+            <img src="{{ asset('images/ploging2.jpg') }}" class="slide">
+            <img src="{{ asset('images/nature2.jpg') }}" class="slide">
+            <img src="{{ asset('images/ploging3.jpg') }}" class="slide">
+            <img src="{{ asset('images/nature3.jpg') }}" class="slide">
+            <img src="{{ asset('images/ploging_1stTime.jpg') }}" class="slide">
         </div>
     </div>
+            <div class="sub__sentence">
+                <p>
+                "楽しい、うれしい、モヤモヤする、なんとなく落ち着く"<br>
+                そんな言葉にならない感情も、すべて大切な「emo」です。<br>
+                町田emoプロジェクトは、感情を否定せず、そのまま分かち合える場を通して<br>
+                人が人らしくいられる社会を育んでいきます。
+                </p>
+                <!-- <a href="{{ route('apply.index') }}" class="btn btn--primary">活動に申し込む</a>
+                <a href="{{ route('activities.index') }}" class="btn btn--ghost">活動報告を見る</a> -->
+            </div>
     </div>
 </section>
 
@@ -86,25 +95,24 @@
 
 <section class="section">
     <div class="container section__inner">
-        <h2 class="section__title">町田emoプロジェクトとは</h2>
-        <p class="section__lead">
-            代表1名・メンバー2名で、小さく温かいコミュニティ運営を行っています。  
-            月1回のプロギングと、不定期の自然観察会・農業体験を組み合わせながら、
-            ゆるやかに「つながり」を育てています。
-        </p>
+        <h2 class="hero__text">
+                主な活動</h2>
 
         <div class="grid grid--3">
             <article class="card">
+                <img src="{{ asset('/images/ploging_summer.jpg') }}" alt="プロギング" class="card__image">
                 <h3 class="card__title">プロギング</h3>
-                <p class="card__text">走る＆歩くペースはゆっくりめ。ごみ拾いをしながら町をめぐります。</p>
+                <p class="card__text">プロギングとは、ジョギングやウォーキングをしながらごみを拾う、スウェーデン発の環境と健康を両立する活動です。プロギングを地域に関わる第一歩として位置づけています。走る速さや体力、経験は関係ありません。同じ時間を一緒に過ごすことで、初対面の人同士でも自然に会話が生まれます。この自然でさりげない活動が、現代の孤立や生きづらさを和らげるきっかけになると考えています。</p>
             </article>
             <article class="card">
+                <img src="{{ asset('/images/nature_autmun.jpg')}}" alt="自然観察会" class="card__image">
                 <h3 class="card__title">自然観察会</h3>
-                <p class="card__text">季節の植物や生き物をのんびり観察。静かな時間を大切にします。</p>
+                <p class="card__text">五感で自然を楽しむ活動として、自然観察会を行っています。公園や市街地で植物や生きものに目を向けることで、自然に触れることで気持ちが解放され、自分らしさを取り戻す事ができます。年齢や立場に関係なく、同じ体験を共有できることも、この活動の大きな魅力です。</p>
             </article>
             <article class="card">
+                <img src="{{asset('/images/farm_exhibition.jpg')}}" alt="農業体験" class="card__image">
                 <h3 class="card__title">農業体験</h3>
-                <p class="card__text">畑で土に触れ、野菜を育てたり収穫したりする体験です。</p>
+                <p class="card__text">農業体験を通じた活動も行っています。畑で土に触れ、作物を育て、収穫し、そしてみんなで食べる。そうした一連の体験を通して、人と自然の関係性や、人と人とのゆるやかなつながりが自然に生まれていくことを目指しています。現在は、地域の農家や関係者の方々と相談を重ねながら、実施に向けた準備を進めている段階です。</p>
             </article>
         </div>
     </div>
@@ -114,10 +122,10 @@
 <section class="section section--tint">
     <div class="container section__inner section__narrow">
         <h2 class="section__title">SNS・ブログ</h2>
-        <p class="section__lead">
-            町田emoプロジェクトの活動の様子や、プロギング／自然観察会の裏側は
-            note と Instagram でも発信しています。
-        </p>
+        <!-- <p class="section__lead">
+            <!-- 町田emoプロジェクトの活動の様子や、プロギング／自然観察会の裏側は
+            note と Instagram でも発信しています。 -->
+        <!-- </p> -->
 
         <div class="sns-links">
             {{-- note --}}

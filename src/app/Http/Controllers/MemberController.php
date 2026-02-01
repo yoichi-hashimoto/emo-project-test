@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Member;
 
 class MemberController extends Controller
 {
-        public function index(){
-        return view('members.index');
+    public function index()
+    {
+        $members = Member::query()
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+
+        return view('members.index', compact('members'));
     }
 }

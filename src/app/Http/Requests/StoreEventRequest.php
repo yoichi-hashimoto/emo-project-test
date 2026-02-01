@@ -15,11 +15,12 @@ class StoreEventRequest extends FormRequest
     {
         return [
             'title'        => ['required', 'string', 'max:100'],
-            'type'         => ['required', 'string', 'in:plogging,nature,farm,other'],
+            'type'         => ['required', 'string', 'in:プロギング,自然観察会,農業体験,その他'],
             'description'  => ['nullable', 'string'],
             'place'        => ['nullable', 'string', 'max:100'],
             'scheduled_at' => ['nullable', 'date'],
             'capacity'     => ['nullable', 'integer', 'min:1'],
+            'application_path' => ['nullable', 'url', 'max:255'], // 追加部分
         ];
     }
 
@@ -29,6 +30,9 @@ class StoreEventRequest extends FormRequest
             'title.required' => 'タイトルは必須です',
             'type.required'  => '活動種別を選択してください',
             'scheduled_at.date' => '日時は日付形式で入力してください',
+            'capacity.integer'  => '定員は整数で入力してください',
+            'capacity.min'      => '定員は1以上で入力してください',
+            'application_path.url' => '申し込みフォームURLは有効なURL形式で入力してください', // 追加部分
         ];
     }
 }
