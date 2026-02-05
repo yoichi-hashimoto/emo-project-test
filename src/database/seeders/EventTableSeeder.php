@@ -15,7 +15,7 @@ class EventTableSeeder extends Seeder
     public function run()
     {
         Event::insert([[
-            'title' => '自然を愛でよう',
+            'title' => '自然を五感で感じよう！冬の自然観察会',
             'type' => '自然観察会',
             'description' => '自然観察会で冬の落ち葉や生き物を観察しよう。暖かいコーヒーと焼き芋も準備しています。',
             'place' => '忠生公園',

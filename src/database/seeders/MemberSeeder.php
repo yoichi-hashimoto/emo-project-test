@@ -30,7 +30,7 @@ class MemberSeeder extends Seeder
             [
                 'name' => '芝田 達也',
                 'role_label' => 'メンバー',
-                'bio' => '埼玉県北本市に住んでいます。町田でのEMOの活動に参加することで、地域の自然環境を守る一助となればと思っています。',
+                'bio' => '埼玉県北本市に住んでいます。町田は少し遠いですが、プロジェクト活動に参加することで地域活性化の一助となればと思っています。',
                 'sort_order' => 2,
                 'created_at' => now(),
                 'avatar_path' => '/images/member/t_shibata_1.jpeg',

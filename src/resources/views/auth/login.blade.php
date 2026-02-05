@@ -62,5 +62,12 @@
             </div>
         </form>
     </div>
+    <div class="container section__inner section__narrow" style="margin-top:16px; text-align:right;">
+    <a href="{{ route('password.request') }}"
+        class="text-sm text-blue-600 hover:underline">
+        パスワードをお忘れですか？
+    </a>
+    </div>
+
 </section>
 @endsection

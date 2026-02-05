@@ -7,7 +7,7 @@
 
             <h1 class="section__title">ユーザー新規登録</h1>
             <p class="section__lead">
-                入力したメールアドレス宛に確認メールが届きます。
+                登録すると、活動報告への「グッジョブ👍」と「コメント」を投稿できます。
             </p>
 
             @if ($errors->any())
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="form__group">
-                    <label>パスワード</label>
+                    <label>パスワード(8文字以上)</label>
                     <input
                         type="password"
                         name="password"

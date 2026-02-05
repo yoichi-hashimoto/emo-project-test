@@ -26,7 +26,7 @@
             <a href="{{ route('activities.index') }}">活動報告</a>
             <a href="{{ route('members.index') }}">メンバー</a>
             <a href="{{ route('apply.index') }}">活動申し込み</a>
-            <a href="{{ route('contact.index') }}">お問い合わせ</a>
+            <!-- <a href="{{ route('contact.index') }}">お問い合わせ</a> -->
 
             @auth
                 {{-- メール未認証なら確認ページ導線（必要なければ消してOK） --}}
@@ -59,8 +59,17 @@
 </main>
 
 <footer class="footer">
-    <div class="container footer__inner">
+    <!-- <div class="container footer__inner">
         <p class="footer__copy">© {{ date('Y') }} Machida emo Project</p>
+    </div> -->
+    <div class="container footer__info">
+    <p>
+        © 町田emoプロジェクト<br>
+        本サイトでは個人情報を適切に管理し、運営目的の範囲内でのみ利用します。
+        Cookieを使用する場合がありますが、個人を特定する情報は含まれません。<br>
+        お問い合わせ：unotakky31@gmail.com
+    </p>
+    <a href="{{ route('privacy') }}">プライバシーポリシー</a>
     </div>
 </footer>
 </body>
